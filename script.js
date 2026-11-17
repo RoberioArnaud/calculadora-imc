@@ -10,5 +10,21 @@ formulario.addEventListener('submit', function (evento) {
   const altura = Number(campoAltura.value);
   const imc = peso / (altura * altura);
 
-  resultado.textContent = `Seu IMC é ${imc.toFixed(2)}.`;
+  let classificacao;
+
+  if (imc < 18.5) {
+    classificacao = 'Abaixo do peso';
+  } else if (imc < 25) {
+    classificacao = 'Peso normal';
+  } else if (imc < 30) {
+    classificacao = 'Sobrepeso';
+  } else if (imc < 35) {
+    classificacao = 'Obesidade grau I';
+  } else if (imc < 40) {
+    classificacao = 'Obesidade grau II';
+  } else {
+    classificacao = 'Obesidade grau III';
+  }
+
+  resultado.textContent = `Seu IMC é ${imc.toFixed(2)}. Classificação: ${classificacao}.`;
 });
