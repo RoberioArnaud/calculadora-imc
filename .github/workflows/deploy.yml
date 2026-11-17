@@ -41,6 +41,8 @@ jobs:
     name: Publicar no GitHub Pages
     needs: preparar
     runs-on: ubuntu-latest
+    outputs:
+      page_url: ${{ steps.deploy.outputs.page_url }}
     permissions:
       pages: write
       id-token: write
@@ -51,3 +53,17 @@ jobs:
       - name: Publicar site
         id: deploy
         uses: actions/deploy-pages@v5.0.1
+
+  dast:
+    name: DAST com OWASP ZAP
+    needs: publicar
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Analisar o site publicado
+        uses: zaproxy/action-baseline@v0.15.0
+        with:
+          target: ${{ needs.publicar.outputs.page_url }}
+          allow_issue_writing: false
+          fail_action: true
+          artifact_name: relatorio-zap
