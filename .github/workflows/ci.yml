@@ -10,8 +10,24 @@ permissions:
   contents: read
 
 jobs:
+  lint:
+    name: Lint de HTML
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obter o código
+        uses: actions/checkout@v7.0.1
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+
+      - name: Validar HTML com HTMLHint
+        run: npx --yes htmlhint@1.9.2 index.html
+
   testes:
     name: Testes do IMC
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Obter o código
