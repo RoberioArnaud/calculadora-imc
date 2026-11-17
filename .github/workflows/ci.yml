@@ -40,3 +40,17 @@ jobs:
 
       - name: Executar testes
         run: node --test
+
+  sast:
+    name: SAST com Semgrep
+    needs: testes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obter o código
+        uses: actions/checkout@v7.0.1
+
+      - name: Analisar segurança do JavaScript
+        run: |
+          docker run --rm -v "$PWD:/src" --workdir /src \
+            semgrep/semgrep:1.185.0 \
+            semgrep scan --config p/javascript --error --metrics=off .
