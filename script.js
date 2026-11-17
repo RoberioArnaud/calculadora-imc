@@ -8,6 +8,19 @@ formulario.addEventListener('submit', function (evento) {
 
   const peso = Number(campoPeso.value);
   const altura = Number(campoAltura.value);
+
+  if (!Number.isFinite(peso) || peso <= 0) {
+    resultado.textContent = 'Informe um peso maior que zero.';
+    campoPeso.focus();
+    return;
+  }
+
+  if (!Number.isFinite(altura) || altura <= 0) {
+    resultado.textContent = 'Informe uma altura maior que zero.';
+    campoAltura.focus();
+    return;
+  }
+
   const imc = peso / (altura * altura);
 
   let classificacao;
