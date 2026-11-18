@@ -20,6 +20,10 @@ Abra o arquivo `index.html` no navegador. Não é necessário instalar dependên
 
 Versão publicada: [Calculadora de IMC no GitHub Pages](https://roberioarnaud.github.io/calculadora-imc/).
 
+### Exemplo de uso
+
+Informe o peso `70` (kg) e a altura `1.75` (m), depois clique em **Calcular IMC**. O resultado será **22.86**, com a classificação **Peso normal**. A altura deve ser informada em metros, não em centímetros.
+
 ## Como rodar os testes
 
 Com o Node.js 24 instalado, execute na pasta do projeto:
