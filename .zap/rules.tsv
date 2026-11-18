@@ -1,0 +1,17 @@
+# Exceções específicas para a calculadora estática pública no GitHub Pages.
+# INFO mantém o achado visível, sem bloquear; não usamos -I nem -i.
+# Reavaliar estas exceções ao mudar a hospedagem ou adicionar dados privados.
+# Cabeçalhos HTTP sem configuração nativa no Pages; riscos aceitos neste projeto.
+10020	INFO	(Anti-clickjacking: X-Frame-Options/frame-ancestors exigem cabeçalho HTTP)
+10021	INFO	(nosniff depende dos cabeçalhos da hospedagem)
+10063	INFO	(Permissions-Policy depende da hospedagem; não usamos câmera/microfone/localização)
+10098	INFO	(CORS público do Pages; somente arquivos públicos, sem API autenticada)
+90004	INFO	(COEP/COOP dependem da hospedagem; não usamos recursos que exigem isolamento)
+# Cache é esperado: o servidor entrega arquivos estáticos, sem resultados pessoais.
+10015	INFO	(Cache-Control da hospedagem para conteúdo público)
+10049	INFO	(Armazenamento em cache de arquivos públicos)
+10050	INFO	(Conteúdo público recuperado do cache da hospedagem)
+10109	INFO	(Detecção informativa de JavaScript, não uma vulnerabilidade)
+# A CSP por meta deve continuar presente; sua remoção bloqueia o pipeline.
+10038	FAIL	(CSP ausente deve ser corrigida no projeto)
+# 10055 continua ativa. hooks.py trata somente a CSP exata já revisada.

@@ -60,10 +60,17 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - name: Obter configuração do ZAP aprovada pelo CI
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+
       - name: Analisar o site publicado
         uses: zaproxy/action-baseline@v0.15.0
         with:
           target: ${{ needs.publicar.outputs.page_url }}
+          rules_file_name: .zap/rules.tsv
+          cmd_options: '--hook /zap/wrk/.zap/hooks.py'
           allow_issue_writing: false
           fail_action: true
           artifact_name: relatorio-zap
