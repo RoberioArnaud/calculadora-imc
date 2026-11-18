@@ -69,8 +69,7 @@ jobs:
         uses: zaproxy/action-baseline@v0.15.0
         with:
           target: ${{ needs.publicar.outputs.page_url }}
-          rules_file_name: .zap/rules.tsv
-          cmd_options: '--hook /zap/wrk/.zap/hooks.py'
+          cmd_options: '-c .zap/rules.tsv --hook /zap/wrk/.zap/hooks.py'
           allow_issue_writing: false
           fail_action: true
           artifact_name: relatorio-zap
