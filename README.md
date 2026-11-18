@@ -42,9 +42,22 @@ npx --yes htmlhint@1.9.2 index.html
 
 Esse comando baixa o HTMLHint na primeira execução e exige acesso à internet.
 
+## Gitflow
+
+- `main`: versão estável e publicada.
+- `develop`: integração das alterações antes de preparar uma versão.
+- `feature/*`: desenvolvimento de funcionalidades a partir de `develop`.
+- `release/*`: preparação das versões que serão promovidas para `main`.
+
+```text
+feature/* → develop → release/* → main
+```
+
+As integrações são feitas por Pull Requests, com o CI aprovado antes do merge.
+
 ## Fluxo de CI/CD
 
-O workflow [ci.yml](.github/workflows/ci.yml) executa em pushes na `main` e em Pull Requests destinados à `main`:
+O workflow [ci.yml](.github/workflows/ci.yml) executa em pushes na `main` e na `develop`, e em Pull Requests destinados a essas branches:
 
 1. **Lint:** valida o `index.html` com HTMLHint.
 2. **Testes:** executa `node --test`, dependendo do lint com `needs: lint`.
